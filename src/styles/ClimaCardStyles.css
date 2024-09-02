@@ -1,0 +1,70 @@
+.clima-card {
+    background: rgba(0, 0, 0, 0.6);
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    overflow: hidden;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    position: relative;
+    transition: transform 0.3s;
+
+}
+
+.clima-card:hover {
+    transform: translateY(-10px);
+}
+
+.clima-card-body {
+    padding: 35px;
+    text-align: center;
+    justify-content: center;
+    border-radius: 0 0 15px 15px;
+}
+
+.clima-card-title {
+    font-size: 2.2rem;
+    margin: 4px 0;
+    font-family: "Nanum Gothic", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+
+}
+
+.clima-card-text {
+    font-size: 1.2rem;
+    margin: 15px 0;
+    font-family: "Nanum Gothic", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    display: flex;
+    align-items: center;
+}
+
+.clima-card-text-time {
+    font-family: "Nanum Gothic", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.clima-card-text img {
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.city-name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.region {
+    font-size: 18px;
+    color: #888;
+    margin-top: 10px;
+}
