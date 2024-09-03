@@ -2,15 +2,15 @@ import { useState,useEffect } from 'react'
 import axios from 'axios'
 import '../styles/App.css'
 import Loading from './Loading'
-
 import ClimaForm from './ClimaForm'
 import { Carousel } from 'react-bootstrap'
 import ClimaCard from './ClimaCard'
-interface Clima {
+ interface Clima {
   location: {
     name: string;
     region: string;
     country: string;
+    localtime: string;
   };
   current: {
     temp_c: number;
@@ -21,18 +21,28 @@ interface Clima {
   };
   forecast: {
     forecastday: {
+      astro: {
+        sunrise: string;
+        sunset: string;
+      };
       date: string;
       day: {
-        maxtemp_c: number;
-        mintemp_c: number;
+        avghumidity: number;
         condition: {
           text: string;
           icon: string;
         };
+        daily_chance_of_rain: number;
+        mintemp_c: number;
+        mintemp_f: number;
+        maxtemp_c: number;
+        maxtemp_f: number;
       };
+  
     }[];
   };
 }
+
 
 function ClimaHero() {
 
@@ -42,6 +52,7 @@ const [image ,setImage] =useState(null)
 const [error ,setError] =useState("")
 
 const getClima = async (ciudad ="Barcelona") =>{
+  
   try {
     if (!ciudad.trim()) {
       throw new Error('Debes ingresar una ciudad')
@@ -65,6 +76,7 @@ const getClima = async (ciudad ="Barcelona") =>{
     console.log(error)
     
     setError("No se pudo encontrar la ciudad. Por favor, intenta con otra.");
+    setLoading(false)
 
 }
 }
@@ -77,6 +89,7 @@ const style = {
   backgroundImage: `url(${image})`,
 }
 const handleChange = (ciudad : string) => {
+  setLoading(true)
   getClima(ciudad)
 }
 
@@ -87,7 +100,7 @@ const handleChange = (ciudad : string) => {
   <h1 className='app-title'>Weather App ⛅ </h1>
  <ClimaForm changeCity={handleChange}  setError={setError}></ClimaForm>
    {error && <div  style={{ color: "#c0392b", textAlign: 'center' }}>{error}</div>}
-    <div style={{ display: 'flex', justifyContent: 'center',alignItems:"center", gap: '20px', marginTop: '20px' }}></div>
+   
 
 
 {loading ? (
@@ -99,7 +112,7 @@ const handleChange = (ciudad : string) => {
     <Carousel interval={100000}>
       {clima.forecast.forecastday.map((forecastItem, index) => (
         <Carousel.Item className='carousel-item' key={index}>
-          <ClimaCard key={index} infoClima={{ location: clima.location, current: clima.current, forecastItem }} />
+          <ClimaCard key={index} infoClima={{ location: clima.location, current: clima.current, forecastItem}} />
         </Carousel.Item>
       ))}
     </Carousel>

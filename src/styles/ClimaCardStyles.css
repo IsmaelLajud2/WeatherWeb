@@ -1,6 +1,6 @@
 .clima-card {
     background: rgba(0, 0, 0, 0.6);
-
+    margin-bottom: 40px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
